@@ -1,0 +1,105 @@
+float signalCyc1 = col - ele;                        
+float signalCyc2 = col + 0.5 * ele + 0.866 * ail;
+float signalCyc3 = col + 0.5 * ele - 0.866 * ail;
+
+clow = 1000
+chigh = 2000
+
+aleft = 1000 
+aright = 2000
+
+elow = 2000
+ehigh = 1000
+
+
+clow - elow = -1000
+clow - ehigh = 0
+
+chigh - elow = 0
+chigh - ehigh = 1000
+
+
+clow + 0.5 * elow + 0.866 * aleft = 2866.0
+
+clow + 0.5 * elow + 0.866 * aright = 3732.0
+
+clow + 0.5 * ehigh + 0.866 * aleft = 2366.0
+
+clow + 0.5 * ehigh + 0.866 * aright = 3232.0
+
+++++++++++
+
+chigh + 0.5 * elow + 0.866 * aleft = 3866.0
+
+chigh + 0.5 * elow + 0.866 * aright = 4732.0
+
+chigh + 0.5 * ehigh + 0.866 * aleft = 3366.0
+
+chigh + 0.5 * ehigh + 0.866 * aright = 4232.0
+
+
+=========================================
+
+clow + 0.5 * elow - 0.866 * aleft = 1134.0
+
+clow + 0.5 * elow - 0.866 * aright = 268.0
+
+clow + 0.5 * ehigh - 0.866 * aleft = 634.0
+
+clow + 0.5 * ehigh - 0.866 * aright = -232.0
+
+++++++++++
+
+chigh + 0.5 * elow - 0.866 * aleft = 2134.0
+
+chigh + 0.5 * elow - 0.866 * aright = 1268.0
+
+chigh + 0.5 * ehigh - 0.866 * aleft = 1634.0
+
+chigh + 0.5 * ehigh - 0.866 * aright = 768.0
+
+c = []
+c << clow - elow
+c << clow - ehigh
+
+c << chigh - elow
+c << chigh - ehigh
+
+c.max = 1000
+c.min = -1000
+mid_tmp = (c.max.abs + c.min.abs) / 2
+mid = c.max - mid_tmp
+mid = 0
+
+a = []
+a << clow + 0.5 * elow + 0.866 * aleft 
+a << clow + 0.5 * elow + 0.866 * aright 
+a << clow + 0.5 * ehigh + 0.866 * aleft 
+a << clow + 0.5 * ehigh + 0.866 * aright 
+a << chigh + 0.5 * elow + 0.866 * aleft 
+a << chigh + 0.5 * elow + 0.866 * aright 
+a << chigh + 0.5 * ehigh + 0.866 * aleft 
+a << chigh + 0.5 * ehigh + 0.866 * aright 
+
+a.max => 4732.0
+a.min => 2366.0
+mid_tmp = (a.max.abs + a.min.abs) / 2
+mid = a.max - mid_tmp
+mid = 1183
+
+**************************************
+b = []
+b << clow + 0.5 * elow - 0.866 * aleft 
+b << clow + 0.5 * elow - 0.866 * aright 
+b << clow + 0.5 * ehigh - 0.866 * aleft 
+b << clow + 0.5 * ehigh - 0.866 * aright 
+b << chigh + 0.5 * elow - 0.866 * aleft 
+b << chigh + 0.5 * elow - 0.866 * aright 
+b << chigh + 0.5 * ehigh - 0.866 * aleft 
+b << chigh + 0.5 * ehigh - 0.866 * aright 
+
+b.max = 2134.0
+b.min = -232.0
+mid_tmp = (b.max.abs + b.min.abs) / 2
+mid = b.max - mid_tmp
+mid = 951

@@ -3,22 +3,27 @@
 // doesn't run on it. You can get it to work by not using the timer, but that
 // means you can't use delay in the loop() function anymore.
 
-#include <SBUS.h>
 #include <Servo.h>
 
-SBUS sbus(Serial);
 
 Servo servoCyc1;
-
+int signal = 1500;
 void setup()
 {
-  sbus.begin(false);
   servoCyc1.attach(3);
+  pinMode(5, INPUT);
 }
 
 void loop()
 {
-  sbus.process();
-  int value = sbus.getChannel(5);
-  servoCyc1.writeMicroseconds(value);
+
+  int in = digitalRead(5);
+  if (in == HIGH) {
+      if (signal < 1520) {
+        signal += 1;
+      }
+      servoCyc1.writeMicroseconds(signal);
+  }else {
+      servoCyc1.writeMicroseconds(1500);
+  }
 }
